@@ -1,2 +1,5 @@
 # hello-world
-my first github repo
+
+I'm new to github, so I'm doing the basic tutorial now.
+
+
