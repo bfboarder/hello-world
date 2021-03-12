@@ -52,7 +52,7 @@ void play_game()
     input >> best_score;
 
     std::ofstream output("best_score.txt");
-    if (!output.is_open())
+    if (!input.is_open())
     {
         std::cout << "Unable to read file" << std::endl;
         return;
