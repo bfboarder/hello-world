@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <cstdlib>
 #include <ctime>
@@ -16,6 +17,7 @@ void print_vector(std::vector<int> vector)
 void play_game()
 {
     std::vector<int> guesses;
+    int count = 0;
     int random = rand() % 250 + 1;
     std::cout << random << std::endl;
     std::cout << "Guess a number: ";
@@ -23,7 +25,7 @@ void play_game()
     {
         int guess;
         std::cin >> guess;
-
+        count++;
         guesses.push_back(guess);
 
         if (guess == random)
@@ -39,6 +41,29 @@ void play_game()
         {
             std::cout << "Too high" << std::endl;
         }
+    }
+    std::ifstream input("best_score.txt");
+    if (!input.is_open())
+    {
+        std::cout << "Unable to read file" << std::endl;
+        return;
+    }
+    int best_score;
+    input >> best_score;
+
+    std::ofstream output("best_score.txt");
+    if (!output.is_open())
+    {
+        std::cout << "Unable to read file" << std::endl;
+        return;
+    }
+    if (count < best_score)
+    {
+        output << count;
+    }
+    else
+    {
+        output << best_score;
     }
     print_vector(guesses);
 }
